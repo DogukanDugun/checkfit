@@ -1,0 +1,57 @@
+.root { display: flex; flex-direction: column; gap: 4px; }
+
+.baslikSatir, .satir {
+  display: grid;
+  grid-template-columns: 24px 1fr 72px 72px 40px;
+  align-items: center;
+  gap: 8px;
+}
+
+.baslikSatir { padding: 0 4px 4px; }
+.baslikSatir span { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--text-hint); text-align: center; }
+
+.satir {
+  background: var(--bg-input);
+  border-radius: var(--radius-input);
+  padding: 8px;
+  transition: background 0.15s;
+}
+
+.tamamlandi { background: rgba(84, 210, 166, 0.08); }
+.pr { background: rgba(84, 210, 166, 0.15); }
+
+.setNo { font-size: 13px; color: var(--text-hint); text-align: center; }
+.oncekiVal { font-family: var(--font-mono); font-size: 12px; color: var(--text-hint); text-align: center; }
+.onceki { text-align: center; }
+.kg, .tekrar { text-align: center; }
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #35322a;
+  border-radius: 6px;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px 4px;
+  text-align: center;
+  outline: none;
+}
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--text-hint); }
+
+.checkBtn {
+  background: none;
+  border: 1px solid #35322a;
+  border-radius: 6px;
+  color: var(--text-hint);
+  font-size: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.checkAktif { background: var(--success); border-color: var(--success); color: #0d0c0a; }

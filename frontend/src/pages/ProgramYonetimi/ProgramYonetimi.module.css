@@ -1,0 +1,51 @@
+.yukleniyor { padding: 40px 16px; color: var(--text-muted); text-align: center; }
+.baslik { font-family: var(--font-heading); font-size: 13px; font-weight: 600; color: var(--text-hint); letter-spacing: 2px; padding: 20px 0 16px; }
+
+.dtKart { background: var(--bg-card); border-radius: var(--radius-card); margin-bottom: 12px; overflow: hidden; }
+
+.dtHeader { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+.dtSol { display: flex; align-items: center; gap: 10px; }
+.dtEtiket { font-family: var(--font-heading); font-size: 12px; font-weight: 700; background: var(--bg-input); color: var(--text-muted); padding: 3px 8px; border-radius: var(--radius-pill); }
+.dtAd { font-size: 16px; font-weight: 600; color: var(--text-main); }
+
+.aksiyonlar { display: flex; gap: 6px; align-items: center; }
+
+.ekleBtn {
+  background: none;
+  border: 1px solid #35322a;
+  border-radius: var(--radius-pill);
+  color: var(--accent);
+  font-size: 12px;
+  padding: 4px 10px;
+}
+.ekleBtn:hover { background: rgba(255, 122, 69, 0.1); }
+
+.duzBtn { background: none; border: none; color: var(--text-hint); font-size: 15px; padding: 2px 6px; }
+.duzBtn:hover { color: var(--text-muted); }
+
+.silBtn { background: none; border: none; color: var(--text-hint); font-size: 18px; padding: 2px 6px; }
+.silBtn:hover { color: #e55; }
+
+.varKart { background: var(--bg-input); margin: 0 12px 10px; border-radius: var(--radius-input); padding: 10px 12px; }
+.varHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.varKod { font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--success); }
+
+.egzSatir { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid #35322a; }
+.egzAd { flex: 1; font-size: 14px; color: var(--text-main); }
+.egzSet { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+
+.buyukEkleBtn {
+  width: 100%;
+  background: none;
+  border: 2px dashed #35322a;
+  border-radius: var(--radius-card);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 18px;
+  margin: 8px 0 24px;
+  transition: all 0.15s;
+}
+.buyukEkleBtn:hover { border-color: var(--accent); color: var(--accent); }

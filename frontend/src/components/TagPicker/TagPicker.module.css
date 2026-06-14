@@ -1,0 +1,13 @@
+.root { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tag {
+  background: var(--bg-input);
+  border: 1px solid #35322a;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 6px 14px;
+  transition: all 0.15s;
+}
+.tag:hover { border-color: var(--warning); color: var(--warning); }
+.secili { background: rgba(255, 194, 77, 0.12); border-color: var(--warning); color: var(--warning); }

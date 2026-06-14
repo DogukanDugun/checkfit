@@ -1,0 +1,12 @@
+.yukleniyor { padding: 40px 16px; color: var(--text-muted); text-align: center; }
+.geri { background: none; border: none; color: var(--text-muted); font-size: 14px; padding: 16px 0 0; display: block; }
+.baslik { font-family: var(--font-heading); font-size: 13px; font-weight: 600; color: var(--text-hint); letter-spacing: 2px; padding: 16px 0 16px; }
+.bos { color: var(--text-muted); text-align: center; padding: 40px 0; }
+.kart { background: var(--bg-card); border-radius: var(--radius-card); padding: 16px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
+.tarih { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+.sub { font-size: 12px; color: var(--warning); }
+.setler { display: flex; flex-wrap: wrap; gap: 8px; }
+.set { font-family: var(--font-mono); font-size: 15px; font-weight: 600; color: var(--text-main); background: var(--bg-input); padding: 4px 10px; border-radius: var(--radius-input); }
+.not { font-size: 13px; color: var(--text-muted); font-style: italic; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12px; color: var(--warning); background: rgba(255, 194, 77, 0.1); padding: 3px 10px; border-radius: var(--radius-pill); }

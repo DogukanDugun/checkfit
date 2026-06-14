@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /c/Users/Doğukan/Desktop/dartoyna && find . -type f -name \"*.md\" -o -name \"package.json\" -o -name \"*.html\" | head -20)",
+      "Read(//c/Users/Doğukan/Desktop/dartoyna/**)",
+      "Bash(dir /s /b c:\\\\Users\\\\Doğukan\\\\Desktop\\\\checkfit)",
+      "Bash(bash \"C:/Users/Doğukan/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/scripts/start-server.sh\" --project-dir \"C:/Users/Doğukan/Desktop/checkfit\")"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+.root { min-height: 100vh; background: var(--bg-outer); }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  height: 56px;
+  background: var(--bg-card);
+  border-bottom: 1px solid #2a271f;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav a {
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav a:hover { color: var(--text-main); background: var(--bg-input); }
+.active { color: var(--text-main) !important; background: var(--bg-input) !important; }
+
+.kullanici {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.username {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.cikis {
+  background: none;
+  border: 1px solid #35322a;
+  color: var(--text-hint);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+.cikis:hover { color: var(--text-muted); border-color: var(--text-hint); }
+
+.main { max-width: 520px; margin: 0 auto; }

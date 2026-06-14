@@ -1,0 +1,106 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid #2a271f;
+  border-radius: var(--radius-card);
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-main);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-hint);
+  font-size: 24px;
+  line-height: 1;
+  padding: 0 4px;
+}
+.closeBtn:hover { color: var(--text-muted); }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-hint);
+  text-transform: uppercase;
+}
+
+.input {
+  background: var(--bg-input);
+  border: 1px solid #35322a;
+  border-radius: var(--radius-input);
+  color: var(--text-main);
+  padding: 12px 14px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--text-hint); }
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: none;
+  border: 1px solid #35322a;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.cancelBtn:hover { border-color: var(--text-muted); }
+
+.confirmBtn {
+  flex: 2;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-pill);
+  color: #fff;
+  padding: 12px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: background 0.15s;
+}
+.confirmBtn:hover:not(:disabled) { background: var(--accent-dim); }
+.confirmBtn:disabled { opacity: 0.5; }

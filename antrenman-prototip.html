@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antrenman Takip — Prototip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141310; --surface:#1d1b16; --surface2:#27241e; --surface3:#322e26;
+    --border:#3a352c; --text:#f1ece1; --muted:#9d988a; --faint:#6f6a5e;
+    --accent:#ff7a45; --accent-d:#c9572b; --done:#54d2a6; --done-d:#2f7d63;
+    --flag:#ffc24d; --flag-d:#8a6618;
+    --r:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0d0c0a;font-family:'Inter',sans-serif;color:var(--text);
+    display:flex;justify-content:center;min-height:100vh;padding:18px 0}
+  #app{width:100%;max-width:430px;background:var(--bg);border:1px solid var(--border);
+    border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-height:760px;
+    box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .top{display:flex;align-items:center;gap:12px;padding:20px 20px 14px}
+  .top .back{width:38px;height:38px;border-radius:11px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);font-size:20px;cursor:pointer;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;transition:.15s}
+  .top .back:hover{background:var(--surface2)}
+  .top h1{font-family:'Oswald',sans-serif;font-weight:600;font-size:25px;letter-spacing:.4px;
+    text-transform:uppercase;line-height:1}
+  .top .sub{font-size:12.5px;color:var(--muted);margin-top:3px;font-weight:400;letter-spacing:0}
+  .body{flex:1;overflow-y:auto;padding:4px 16px 24px}
+  .hint{font-size:12.5px;color:var(--faint);padding:2px 6px 14px;line-height:1.5}
+
+  /* HOME cards */
+  .typecard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+    padding:16px 16px;margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:15px;
+    transition:.15s}
+  .typecard:hover{border-color:#544d3f;background:var(--surface2)}
+  .badge{width:46px;height:46px;border-radius:12px;background:var(--surface3);
+    display:flex;align-items:center;justify-content:center;font-family:'Oswald';font-weight:700;
+    font-size:23px;color:var(--accent);flex:0 0 auto}
+  .typemeta{flex:1;min-width:0}
+  .typemeta .nm{font-weight:600;font-size:16px;letter-spacing:.2px}
+  .typemeta .lt{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .typemeta .lt b{color:var(--text);font-weight:500}
+  .nextpill{font-family:'Roboto Mono';font-weight:600;font-size:13px;color:#0d0c0a;
+    background:var(--done);padding:5px 11px;border-radius:999px;flex:0 0 auto;letter-spacing:.5px}
+
+  /* VARIATION rail */
+  .raillabel{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;
+    margin:6px 6px 12px;font-weight:600}
+  .rail{display:flex;flex-wrap:wrap;gap:11px;padding:0 4px 4px}
+  .chip{position:relative;width:78px;height:84px;border-radius:15px;border:1px solid var(--border);
+    background:var(--surface);cursor:pointer;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:5px;transition:.15s}
+  .chip:hover{background:var(--surface2)}
+  .chip .v{font-family:'Oswald';font-weight:700;font-size:26px;letter-spacing:.5px}
+  .chip .tag{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .chip.next{border-color:var(--accent);background:rgba(255,122,69,.10)}
+  .chip.next .v{color:var(--accent)}
+  .chip.next .tag{color:var(--accent)}
+  .chip.done .v{color:var(--faint)}
+  .chip .dot{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%}
+  .chip.done .dot{background:var(--done)}
+  .cyclenote{display:flex;align-items:center;gap:8px;color:var(--faint);font-size:12px;
+    margin:16px 6px 0}
+
+  /* WORKOUT */
+  .ex{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+    padding:15px 15px 13px;margin-bottom:13px}
+  .ex.flagged{border-color:var(--flag-d)}
+  .exhead{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+  .exhead .exn{font-weight:600;font-size:15.5px;flex:1;letter-spacing:.2px}
+  .exhead .warn{color:var(--flag);font-size:17px;line-height:1.2}
+  .prev{font-family:'Roboto Mono';font-size:12px;color:var(--muted);background:var(--surface2);
+    border-radius:8px;padding:7px 10px;margin-bottom:11px;line-height:1.6}
+  .prev .lab{color:var(--faint);font-family:'Inter';font-weight:500;margin-right:4px}
+  .prev.none{color:var(--faint)}
+  .prevnote{display:block;color:var(--flag);font-family:'Inter';font-size:12px;margin-top:5px}
+  .setrow{display:grid;grid-template-columns:24px 1fr 1fr;gap:9px;align-items:center;margin-bottom:8px}
+  .setrow .sn{font-family:'Roboto Mono';font-size:13px;color:var(--faint);text-align:center}
+  .ipt{position:relative}
+  .ipt input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;
+    color:var(--text);font-family:'Roboto Mono';font-weight:600;font-size:15px;padding:10px 38px 10px 12px;
+    text-align:left}
+  .ipt input:focus{outline:none;border-color:var(--accent)}
+  .ipt input::placeholder{color:var(--faint);font-weight:500}
+  .ipt .u{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:12px;
+    color:var(--faint);font-family:'Inter';pointer-events:none}
+  .colhead{display:grid;grid-template-columns:24px 1fr 1fr;gap:9px;margin-bottom:7px;
+    font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.7px;font-weight:600}
+  .colhead span:first-child{text-align:center}
+  .exactions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .mini{background:transparent;border:1px solid var(--border);border-radius:9px;color:var(--muted);
+    font-family:'Inter';font-size:12.5px;font-weight:500;padding:7px 11px;cursor:pointer;transition:.15s}
+  .mini:hover{border-color:#544d3f;color:var(--text)}
+  .mini.on{border-color:var(--flag-d);color:var(--flag);background:rgba(255,194,77,.08)}
+  .notebox{margin-top:11px}
+  .notebox textarea{width:100%;background:var(--surface2);border:1px solid var(--flag-d);border-radius:10px;
+    color:var(--text);font-family:'Inter';font-size:13.5px;padding:10px 12px;resize:vertical;min-height:54px}
+  .notebox textarea:focus{outline:none;border-color:var(--flag)}
+  .notebox .nlab{font-size:11.5px;color:var(--flag);margin-bottom:6px;font-weight:500}
+  .subbox{margin-top:11px}
+  .subbox .nlab{font-size:11.5px;color:var(--flag);margin-bottom:6px;font-weight:500}
+  .subbox input{width:100%;background:var(--surface2);border:1px solid var(--flag-d);border-radius:10px;
+    color:var(--text);font-family:'Inter';font-size:13.5px;padding:10px 12px}
+  .subbox input:focus{outline:none;border-color:var(--flag)}
+  .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .tagrow .tl{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;width:100%;margin-bottom:-2px}
+
+  .finishbar{padding:14px 16px 20px;border-top:1px solid var(--border);background:var(--bg)}
+  .finish{width:100%;background:var(--accent);color:#1a0f08;border:none;border-radius:13px;
+    font-family:'Oswald';font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:1px;
+    padding:15px;cursor:pointer;transition:.15s}
+  .finish:hover{background:#ff8a5b}
+  .finish:active{transform:scale(.99)}
+
+  .toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);
+    background:var(--done);color:#08231a;font-weight:600;font-size:14px;padding:12px 20px;
+    border-radius:12px;opacity:0;transition:.3s;pointer-events:none;z-index:50;
+    font-family:'Inter';box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  ::-webkit-scrollbar{width:0}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script>
+/* ---------- veri ---------- */
+const state = {
+  types:[
+    { id:'t1', name:'Göğüs / Arka kol', short:'1', lastIdx:0, lastWhen:'3 gün önce',
+      vars:[
+        { id:'1A', ex:[
+            {name:'Bench press', planned:3, hist:null},
+            {name:'Dumbbell press', planned:3, hist:null},
+            {name:'Pec deck', planned:3, hist:null},
+            {name:'Skull crusher', planned:3, hist:null},
+        ]},
+        { id:'1B', ex:[
+            {name:'Bench press', planned:3, hist:{sets:[[60,8],[62.5,8],[65,6]], note:null, when:'3 hafta önce'}},
+            {name:'Incline DB press', planned:3, hist:{sets:[[24,10],[26,9],[26,8]], note:null, when:'3 hafta önce'}},
+            {name:'Cable fly', planned:3, hist:{sets:[[15,12],[15,12],[17.5,10]], note:'Cihaz doluydu · dumbbell fly yaptım', when:'3 hafta önce'}},
+            {name:'Triceps pushdown', planned:3, hist:{sets:[[25,12],[27.5,10],[30,8]], note:null, when:'3 hafta önce'}},
+        ]},
+        { id:'1C', ex:[
+            {name:'Incline barbell press', planned:3, hist:null},
+            {name:'Dips', planned:3, hist:null},
+            {name:'Cable crossover', planned:3, hist:null},
+            {name:'Overhead extension', planned:3, hist:null},
+        ]},
+      ]},
+    { id:'t2', name:'Sırt / Ön kol', short:'2', lastIdx:2, lastWhen:'5 gün önce',
+      vars:[
+        { id:'2A', ex:[{name:'Lat pulldown',planned:3,hist:null},{name:'Barbell row',planned:3,hist:null},{name:'Biceps curl',planned:3,hist:null}]},
+        { id:'2B', ex:[{name:'Pull-up',planned:3,hist:null},{name:'Seated row',planned:3,hist:null},{name:'Hammer curl',planned:3,hist:null}]},
+        { id:'2C', ex:[{name:'T-bar row',planned:3,hist:{sets:[[40,10],[45,8],[45,8]],note:null,when:'5 gün önce'}},{name:'Face pull',planned:3,hist:null},{name:'Preacher curl',planned:3,hist:null}]},
+        { id:'2D', ex:[{name:'Deadlift',planned:3,hist:null},{name:'Cable row',planned:3,hist:null},{name:'Concentration curl',planned:3,hist:null}]},
+        { id:'2E', ex:[{name:'Pendlay row',planned:3,hist:null},{name:'Straight-arm pulldown',planned:3,hist:null},{name:'Cable curl',planned:3,hist:null}]},
+      ]},
+    { id:'t3', name:'Bacak', short:'3', lastIdx:1, lastWhen:'2 gün önce',
+      vars:[
+        { id:'3A', ex:[{name:'Squat',planned:3,hist:{sets:[[100,5],[100,5],[100,4]],note:null,when:'2 gün önce'}},{name:'Leg press',planned:3,hist:null},{name:'Leg curl',planned:3,hist:null},{name:'Calf raise',planned:3,hist:null}]},
+        { id:'3B', ex:[{name:'Romanian deadlift',planned:3,hist:null},{name:'Hack squat',planned:3,hist:null},{name:'Leg extension',planned:3,hist:null}]},
+      ]},
+  ]
+};
+
+let screen={name:'home'};
+let session=null;
+const quickTags=['Zaman kalmadı','Sakatlık/Ağrı','Cihaz doluydu','Enerjim düşüktü'];
+
+const $=s=>document.querySelector(s);
+const app=$('#app');
+const nextIdx=t=>(t.lastIdx+1)%t.vars.length;
+const fmt=n=>Number.isInteger(n)?n:n;
+
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2600);}
+
+/* ---------- HOME ---------- */
+function home(){
+  let h=`<div class="top"><div><h1>Antrenmanlarım</h1><div class="sub">Bugün hangi gün? Birine dokun.</div></div></div>
+  <div class="body">`;
+  state.types.forEach(t=>{
+    const nx=t.vars[nextIdx(t)].id;
+    const last=t.vars[t.lastIdx].id;
+    h+=`<div class="typecard" onclick="goVars('${t.id}')">
+      <div class="badge">${t.short}</div>
+      <div class="typemeta">
+        <div class="nm">${t.name}</div>
+        <div class="lt">En son <b>${last}</b> · ${t.lastWhen}</div>
+      </div>
+      <div class="nextpill">${nx} →</div>
+    </div>`;
+  });
+  h+=`<div class="hint">Yeşil etiket, sıradaki varyasyonu gösterir. İstersen içeri girip başka bir varyasyon da seçebilirsin — sıra zorunlu değil.</div></div>`;
+  app.innerHTML=h;screen={name:'home'};
+}
+
+/* ---------- VARYASYON ---------- */
+function goVars(tid){screen={name:'vars',tid};renderVars();}
+function renderVars(){
+  const t=state.types.find(x=>x.id===screen.tid);
+  const nx=nextIdx(t);
+  let h=`<div class="top"><button class="back" onclick="home()">‹</button>
+    <div><h1>${t.name}</h1><div class="sub">Varyasyonu seç</div></div></div>
+  <div class="body">
+    <div class="raillabel">Varyasyonlar</div>
+    <div class="rail">`;
+  t.vars.forEach((v,i)=>{
+    const cls=i===nx?'next':(i===t.lastIdx?'done':'');
+    const tag=i===nx?'sıradaki':(i===t.lastIdx?'en son':'');
+    h+=`<div class="chip ${cls}" onclick="startSession('${t.id}','${v.id}')">
+      <div class="dot"></div>
+      <div class="v">${v.id}</div>
+      <div class="tag">${tag}</div>
+    </div>`;
+  });
+  h+=`</div>
+    <div class="cyclenote">↻ &nbsp;${t.vars[t.vars.length-1].id}'den sonra başa (${t.vars[0].id}) döner</div>
+    <div class="hint">En son <b style="color:var(--text)">${t.vars[t.lastIdx].id}</b> yapmışsın, o yüzden sıradaki <b style="color:var(--accent)">${t.vars[nx].id}</b>. Ama tatil dönüşü gibi durumlarda istediğine dokunabilirsin.</div>
+  </div>`;
+  app.innerHTML=h;
+}
+
+/* ---------- SEANS ---------- */
+function startSession(tid,vid){
+  const t=state.types.find(x=>x.id===tid);
+  const v=t.vars.find(x=>x.id===vid);
+  session={tid,vid,entries:v.ex.map(e=>({
+    name:e.name, planned:e.planned, hist:e.hist,
+    sets:Array.from({length:e.planned},()=>({w:'',r:''})),
+    note:'', showNote:!!0, sub:false, subName:'', tags:[]
+  }))};
+  screen={name:'work',tid,vid};renderWork();
+}
+
+function renderWork(){
+  const t=state.types.find(x=>x.id===session.tid);
+  let h=`<div class="top"><button class="back" onclick="renderVars()">‹</button>
+    <div><h1>${session.vid} <span style="color:var(--muted);font-size:15px;font-weight:500">${t.name}</span></h1>
+    <div class="sub">Her seti gir · gerekirse not düş</div></div></div>
+  <div class="body">`;
+  session.entries.forEach((e,ei)=>{
+    const flagged=e.note.trim()||e.sub||e.tags.length;
+    h+=`<div class="ex ${flagged?'flagged':''}">
+      <div class="exhead"><div class="exn">${e.name}</div>${flagged?'<div class="warn">⚠</div>':''}</div>`;
+    // previous reference
+    if(e.hist){
+      const line=e.hist.sets.map(s=>`${fmt(s[0])}×${s[1]}`).join('  ·  ');
+      const whenTxt=e.hist.when?` <span style="color:var(--faint)">— ${e.hist.when}</span>`:'';
+      h+=`<div class="prev"><span class="lab">Geçen sefer:</span>${line}${whenTxt}`;
+      if(e.hist.note)h+=`<span class="prevnote">⚠ ${e.hist.note}</span>`;
+      h+=`</div>`;
+    } else {
+      h+=`<div class="prev none">İlk kez — referans yok</div>`;
+    }
+    // set rows
+    h+=`<div class="colhead"><span>#</span><span>Ağırlık</span><span>Tekrar</span></div>`;
+    e.sets.forEach((s,si)=>{
+      const ph=e.hist&&e.hist.sets[si];
+      h+=`<div class="setrow">
+        <div class="sn">${si+1}</div>
+        <div class="ipt"><input inputmode="decimal" value="${s.w}" placeholder="${ph?fmt(ph[0]):'—'}"
+          oninput="setVal(${ei},${si},'w',this.value)"><span class="u">kg</span></div>
+        <div class="ipt"><input inputmode="numeric" value="${s.r}" placeholder="${ph?ph[1]:'—'}"
+          oninput="setVal(${ei},${si},'r',this.value)"><span class="u">tkr</span></div>
+      </div>`;
+    });
+    h+=`<div class="tagrow"><span class="tl">Hızlı etiket</span>`+
+      quickTags.map(t=>`<button class="mini ${e.tags.includes(t)?'on':''}" onclick="toggleTag(${ei},'${t}')">${t}</button>`).join('')+`</div>`;
+    h+=`<div class="exactions">
+      <button class="mini" onclick="addSet(${ei})">+ set</button>
+      ${e.sets.length>1?`<button class="mini" onclick="delSet(${ei})">− set</button>`:''}
+      <button class="mini ${e.showNote?'on':''}" onclick="toggleNote(${ei})">⚠ not</button>
+      <button class="mini ${e.sub?'on':''}" onclick="toggleSub(${ei})">↔ hareketi değiştir</button>
+    </div>`;
+    if(e.showNote){
+      h+=`<div class="notebox"><div class="nlab">Bu sefer farklı olan ne? (sonraki sefer bunu göreceksin)</div>
+      <textarea placeholder="ör. Hastaydım, ağırlığı düşürdüm" oninput="noteVal(${ei},this.value)">${e.note}</textarea></div>`;
+    }
+    if(e.sub){
+      h+=`<div class="subbox"><div class="nlab">Bunun yerine ne yaptın?</div>
+      <input placeholder="ör. Pec deck (cihaz boştu)" value="${e.subName}" oninput="subVal(${ei},this.value)"></div>`;
+    }
+    h+=`</div>`;
+  });
+  h+=`</div>
+  <div class="finishbar"><button class="finish" onclick="finish()">Seansı bitir</button></div>`;
+  app.innerHTML=h;
+}
+
+/* model güncellemeleri */
+function setVal(ei,si,f,v){session.entries[ei].sets[si][f]=v;}      // re-render yok (odak kaybolmasın)
+function noteVal(ei,v){session.entries[ei].note=v;}
+function subVal(ei,v){session.entries[ei].subName=v;}
+function toggleTag(ei,t){const a=session.entries[ei].tags;const i=a.indexOf(t);if(i<0)a.push(t);else a.splice(i,1);renderWork();}
+function addSet(ei){session.entries[ei].sets.push({w:'',r:''});renderWork();}
+function delSet(ei){const s=session.entries[ei].sets;if(s.length>1)s.pop();renderWork();}
+function toggleNote(ei){const e=session.entries[ei];e.showNote=!e.showNote;renderWork();}
+function toggleSub(ei){const e=session.entries[ei];e.sub=!e.sub;renderWork();}
+
+function finish(){
+  const t=state.types.find(x=>x.id===session.tid);
+  const v=t.vars.find(x=>x.id===session.vid);
+  session.entries.forEach((e,i)=>{
+    const sets=e.sets.filter(s=>s.w!=='').map(s=>[parseFloat(s.w), s.r===''?0:parseInt(s.r)]);
+    let parts=[...e.tags];
+    if(e.sub && e.subName.trim()) parts.push(`${e.name} yerine ${e.subName.trim()}`);
+    if(e.note.trim()) parts.push(e.note.trim());
+    const note=parts.join(' · ');
+    if(sets.length || note){
+      v.ex[i].hist={sets:sets.length?sets:(v.ex[i].hist?v.ex[i].hist.sets:[]), note:note||null, when:'az önce'};
+    }
+  });
+  const idx=t.vars.findIndex(x=>x.id===session.vid);
+  t.lastIdx=idx; t.lastWhen='az önce';
+  session=null;
+  home();
+  toast('Seans kaydedildi ✓');
+}
+
+home();
+</script>
+</body>
+</html>

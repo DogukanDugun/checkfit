@@ -1,0 +1,73 @@
+.root {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  margin-bottom: 12px;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+.flagged { border-color: var(--warning); }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  cursor: pointer;
+}
+.headerSol { display: flex; flex-direction: column; gap: 2px; }
+.headerSag { display: flex; align-items: center; gap: 12px; }
+.ad { font-size: 17px; font-weight: 600; color: var(--text-main); }
+.sub { font-size: 12px; color: var(--text-muted); }
+.acikKapat { color: var(--text-hint); font-size: 12px; }
+
+.gecmisBtn {
+  background: none;
+  border: 1px solid #35322a;
+  border-radius: var(--radius-pill);
+  color: var(--text-hint);
+  font-size: 12px;
+  padding: 4px 10px;
+}
+.gecmisBtn:hover { color: var(--accent); border-color: var(--accent); }
+
+.icerik { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 16px; }
+.oncekiInfo { font-size: 12px; color: var(--text-muted); }
+.bolum { display: flex; flex-direction: column; gap: 8px; }
+.etiketBaslik { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--text-hint); }
+
+.textarea {
+  background: var(--bg-input);
+  border: 1px solid #35322a;
+  border-radius: var(--radius-input);
+  color: var(--text-main);
+  padding: 10px 12px;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+}
+.textarea:focus { border-color: var(--accent); }
+.textarea::placeholder { color: var(--text-hint); }
+
+.inputField {
+  background: var(--bg-input);
+  border: 1px solid #35322a;
+  border-radius: var(--radius-input);
+  color: var(--text-main);
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+.inputField:focus { border-color: var(--accent); }
+.inputField::placeholder { color: var(--text-hint); }
+
+.flagBtn {
+  background: none;
+  border: 1px solid #35322a;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 6px 14px;
+  align-self: flex-start;
+}
+.flagAktif { background: rgba(255, 194, 77, 0.12); border-color: var(--warning); color: var(--warning); }

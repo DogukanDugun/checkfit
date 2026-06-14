@@ -1,0 +1,54 @@
+.yukleniyor { padding: 40px 16px; color: var(--text-muted); text-align: center; }
+.geri { background: none; border: none; color: var(--text-muted); font-size: 14px; padding: 16px 0 0; display: block; }
+.geri:hover { color: var(--text-main); }
+.baslik { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--text-main); padding: 16px 0 4px; }
+.alt { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+
+.liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-bottom: 32px; }
+
+.kart {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 20px 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+.kart:hover { background: #232019; }
+.secili { border-color: var(--accent) !important; }
+.siradaki { border-color: var(--success); }
+
+.kod { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--text-main); }
+
+.siradakiBadge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--success);
+  color: #0d0c0a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 18px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: background 0.15s;
+}
+.btn:hover:not(:disabled) { background: var(--accent-dim); }
+.btn:disabled { opacity: 0.5; }

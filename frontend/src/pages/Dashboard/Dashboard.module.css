@@ -1,0 +1,93 @@
+.yukleniyor { padding: 40px 16px; color: var(--text-muted); text-align: center; }
+
+.devamBanner {
+  background: rgba(255, 122, 69, 0.1);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.devamBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.devamBtn:hover { background: var(--accent-dim); }
+
+.bos {
+  padding: 60px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 14px 28px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.btn:hover { background: var(--accent-dim); }
+
+.baslik {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-hint);
+  letter-spacing: 2px;
+  padding: 20px 0 12px;
+}
+
+.liste { display: flex; flex-direction: column; gap: 10px; }
+
+.kart {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.kart:hover { background: #232019; }
+
+.kartUst { display: flex; align-items: center; gap: 12px; }
+
+.etiket {
+  background: var(--bg-input);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.ad { font-size: 16px; font-weight: 600; color: var(--text-main); }
+
+.siradaki { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.siradakiEtiket { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--text-hint); }
+.varyasyon { font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--success); }

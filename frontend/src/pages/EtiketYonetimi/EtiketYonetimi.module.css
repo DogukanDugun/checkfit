@@ -1,0 +1,43 @@
+.baslik { font-family: var(--font-heading); font-size: 13px; font-weight: 600; color: var(--text-hint); letter-spacing: 2px; padding: 20px 0 16px; }
+
+.form { display: flex; gap: 10px; margin-bottom: 20px; }
+
+.input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid #35322a;
+  border-radius: var(--radius-input);
+  color: var(--text-main);
+  padding: 12px 14px;
+  font-size: 15px;
+  outline: none;
+}
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--text-hint); }
+
+.ekleBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-input);
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.ekleBtn:hover { background: var(--accent-dim); }
+
+.liste { display: flex; flex-direction: column; gap: 8px; }
+
+.kart {
+  background: var(--bg-card);
+  border-radius: var(--radius-input);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label { font-size: 15px; color: var(--text-main); }
+
+.silBtn { background: none; border: none; color: var(--text-hint); font-size: 20px; padding: 0 4px; }
+.silBtn:hover { color: #e55; }

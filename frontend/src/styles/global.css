@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-outer:   #0d0c0a;
+  --bg-screen:  #141310;
+  --bg-card:    #1d1b16;
+  --bg-input:   #27241e;
+
+  --text-main:  #f1ece1;
+  --text-muted: #9d988a;
+  --text-hint:  #6f6a5e;
+
+  --accent:     #ff7a45;
+  --accent-dim: #c9572b;
+  --success:    #54d2a6;
+  --warning:    #ffc24d;
+
+  --radius-card:  14px;
+  --radius-input: 8px;
+  --radius-pill:  999px;
+
+  --font-heading: 'Oswald', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'Roboto Mono', monospace;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  background: var(--bg-outer);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { cursor: pointer; font-family: var(--font-body); }
+input, textarea { font-family: var(--font-body); }
+a { color: inherit; text-decoration: none; }
+
+.page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 16px 100px;
+  min-height: 100vh;
+  background: var(--bg-screen);
+}
